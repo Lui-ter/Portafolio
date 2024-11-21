@@ -193,39 +193,9 @@
 
                 </div>
                 <div class="input-group">
-                    <label>Teléfono</label>
-                    <input type="text" id="telefono" name="telefono" required>
-                </div>
-                <div class="input-group">
                     <label>Correo</label>
                     <input type="email" id="correo" name="correo" required>
-                </div>
-                <div class="input-group">
-                    <label>Ubicación</label>
-                    <input type="text" id="ubicacion" name="ubicacion" placeholder="Cali-Colombia" required>
-                </div>
-
-                <div class="input-group">
-                    <label>Descripción</label>
-                    <input type="text" id="descripcion" name="descripcion" required>
-                </div>
-                <div class="input-group">
-                    <label>Año del titulo</label>
-                    <input type="number" id="fechaTitulo" name="fechaTitulo" placeholder="Nombre de carrera" required>
-                </div>
-                <div class="input-group">
-                    <label>Titulo</label>
-                    <input type="text" id="titulo" name="titulo" placeholder="Nombre de carrera" required>
-                </div>
-
-                <div class="input-group">
-                    <label>Define tu experiencia laboral</label>
-                    <textarea name="experiencia" rows="10" cols="35">Escribe aquí tus experiencia</textarea>
-                </div>
-                <div class="input-group">
-                    <label>Imagen</label>
-                    <input type="file" id="imagen" name="imagen" required>
-                </div>
+                </div>   
             </div>
 
             <!-- Botón de envío -->

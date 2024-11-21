@@ -144,20 +144,16 @@
             <h2>Datos personales</h2>
             <div class="content">
                 <div class="info">
-                    <p><strong>Nombre:</strong>{{$nombre}}</p>
-                    <p><strong>Apellidos:</strong>{{$apellido}}</p>
-                    <p><strong>Edad:</strong>{{$edad}}</p>
-                    <p><strong>Genero:</strong>{{$genero}}</p>
-                    <p><strong>Correo:</strong>{{$correo}}</p>
-                    <p><strong>Telefono:</strong>{{$telefono}}</p>
-                    <p><strong>Ubicacion:</strong>{{$ubicacion}}</p>
+                    <p><strong>Nombre:</strong>{{$usuario->Nombre}}</p>
+                    <p><strong>Apellidos:</strong>{{$usuario->Apellido}}</p>
+                    <p><strong>Edad:</strong>{{$usuario->Edad}}</p>
+                    <p><strong>Genero:</strong>{{$usuario->Genero}}</p>
+                    <p><strong>Correo:</strong>{{$usuario->Correo}}</p>
+                    <p><strong>Telefono:</strong><a href="#">¿Deseas agregarlo?</a></p>
+                    <p><strong>Ubicacion:</strong></p>
                 </div>
                 <div class="photo">
-                    @if ($ruta)
-                        <img src="{{ asset('storage/' . $ruta) }}" alt="Imagen de Perfil">
-                    @else
-                        <p>No se ha subido ninguna imagen</p>
-                    @endif
+                    <a href="#">¿Deseas agregar una imagen?</a>
                 </div>
             </div>
         </section>
@@ -167,8 +163,8 @@
             <h2>Perfil profesional</h2>
             <div class="content">
                 <div class="education-item">
-                    <p><strong>Año de finalizacion:</strong>{{$fechaTitulo}}</p>
-                    <p><strong>Titulo:</strong>{{$titulo}}</p>
+                    <p><strong>Año de finalizacion:</strong><a href="#">¿Deseas agregarlo?</a></p>
+                    <p><strong>Titulo:</strong><a href="#">¿Deseas agregarlo?</a></p>
                 </div>
             </div>
         </section>
@@ -178,7 +174,7 @@
             <h2>Experiencia</h2>
             <div class="content">
                 <div class="experience-item">
-                    <p>{{$experiencia}}</p>
+                    <p><a href="#">¿Deseas agregarlo?</a></p>
                 </div>
             </div>
         </section>
