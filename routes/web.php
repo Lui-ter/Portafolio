@@ -17,3 +17,7 @@ route::post('/datos_formulario',[usuariosController::class,'datos_registro']);
 Route::get('/portafolio', function () {
     return view('secciones/papeleria');
 });
+// ruta para recibir todos los nuevos campos del usuario
+Route::post('/recibirTelefono', [usuariosController::class,'nuevostelefono']);
+//  ruta para recibir el campo de ubicacion para usuario
+Route::post('/recibirUbicacion', [usuariosController::class,'nuevosUbicacion']);

@@ -129,9 +129,9 @@
     font-size: 14px;
     box-shadow: 0px -4px 15px rgba(0, 0, 0, 0.1);
     margin-top: auto; /* Empuja el footer hacia el final si hay espacio disponible */
-    }
+}
     /* Modal - oculto por defecto */
-#modal-telefono, #modal-imagen, #modal-ubicacion, #modal-finalizacion, #modal-titulo, #modal-experiencia {
+    #modal-telefono, #modal-imagen, #modal-ubicacion, #modal-finalizacion, #modal-titulo, #modal-experiencia {
     display: none; /* Oculta el modal inicialmente */
     position: fixed;
     top: 0;
@@ -142,32 +142,32 @@
     justify-content: center;
     align-items: center;
     z-index: 1000; /* Asegura que esté encima de otros elementos */
-}
+    }
 
-/* Contenido del modal */
-.datos-model {
+    /* Contenido del modal */
+    .datos-model {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 90%;
     max-width: 400px;
-}
+    }
 
 
-.cerrar {
+    .cerrar {
     float: right;
     font-size: 20px;
     cursor: pointer;
     color: #333;
     transition: color 0.3s ease;
-}
+    }
 
-.cerrar:hover {
+    .cerrar:hover {
     color: #3498db;
-}
+    }
 
-#form-experiencia #experiencia {
+    #form-experiencia #experiencia {
     width: auto; 
     height: 80px; 
     padding: 10px; 
@@ -176,8 +176,19 @@
     border-radius: 8px; 
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
     resize: none; 
-}
-
+    }
+    .ocultar-telefono{
+    display: none; /* Oculta el modal inicialmente */
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
+    }
+    .telefono-a{
+    display: flex;
+    z-index: 1000;
+    }
+    .ubicacion-a{
+    display: flex;
+    z-index: 1000;
+    }
 </style>
 </head>
 <body>
@@ -192,41 +203,48 @@
             <h2>Datos personales</h2>
             <div class="content">
                 <div class="info">
-                    <p><strong>Nombre:</strong>{{$usuario->Nombre}}</p>
-                    <p><strong>Apellidos:</strong>{{$usuario->Apellido}}</p>
-                    <p><strong>Edad:</strong>{{$usuario->Edad}}</p>
-                    <p><strong>Genero:</strong>{{$usuario->Genero}}</p>
-                    <p><strong>Correo:</strong>{{$usuario->Correo}}</p>
-                    <p><strong>Telefono:</strong>
-                    <a href="#" id="telefono-a">¿Deseas agregarlo?</a></p>
-                        <!--Model con js-->
+                    <p><strong>Nombre:</strong>{{$datos->Nombre}}</p>
+                    <p><strong>Apellidos:</strong>{{$datos->Apellido}}</p>
+                    <p><strong>Edad:</strong>{{$datos->Edad}}</p>
+                    <p><strong>Genero:</strong>{{$datos->Genero}}</p>
+                    <p><strong>Correo:</strong>{{$datos->Correo}}</p>
+                    <strong>Telefono:</strong><p clase="ocultar-telefono" id="ocultar-telefono">{{$datos->Telefono}}</p>
+                    <a href="#" id="telefono-a" class="telefono-a">¿Deseas agregarlo?</a></p>
+                        <!--Model para el telefono-->
                         <div id="modal-telefono">
                             <div class="datos-model">
                                 <span class="cerrar cerrar-telefono">Atras</span>
                                 <h3>Ingresa información</h3>
-                                <form method="post" action="#" id="form-telefono">
-                                    <label>Telefono:</label>
+                                <form method="post" action="{{ url('recibirTelefono') }}">
+                                    @csrf
+                                    <label>Teléfono:</label>
                                     <input type="number" id="telefono" name="telefono" required>
-                                    <button type="submit">Guardar cambios</button>
+                                    <input type="hidden" name="id" value="{{ $datos->id }}">
+                                    <button type="submit" id="GuardarTelefono">Guardar cambios</button>
                                 </form>
+                                
                             </div>
                         </div>  
-                         <!--Model con js-->
-                    <p><strong>Ubicacion:</strong><a href="#" id="ubicacion-a">¿Deseas agregarlo?</a></p></p>
                     
-                    <!--Model con js-->
+                    
+                         <!--Model para el telefono-->
+                    <p><strong>Ubicacion:</strong><a href="#" id="ubicacion-a" class="ubicacion-a">¿Deseas agregarlo?</a></p></p>
+                    
+                    <!--Model para ubicacion -->
                     <div id="modal-ubicacion">
                         <div class="datos-model">
                             <span class="cerrar cerrar-ubicacion">Atras</span>
                             <h3>Ingresa información</h3>
-                            <form method="post" action="#" id="form-ubicacion">
+                            <form method="post" action="{{url('recibirUbicacion')}}" id="form-ubicacion">
+                                @csrf
                                 <label>Ubicación:</label>
                                 <input type="text" id="ubicacion" name="ubicacion" required>
-                                <button type="submit">Guardar cambios</button>
+                                <input type="hidden" id="id-ubicacion" name="id" value="{{$datos->id}}">
+                                <button type="submit" id="GuardarUbicacion">Guardar cambios</button>
                             </form>
                         </div>
                     </div>  
-                     <!--Model con js-->
+                     <!--Model para la ubicacion-->
                     
                 </div>
                 <div class="photo">
@@ -237,6 +255,7 @@
                             <span class="cerrar cerrar-imagen">Atras</span>
                             <h3>Ingresa información</h3>
                             <form method="post" action="#" id="form-imagen" enctype="multipart/form-data">
+                                @csrf
                                 <label>Imagen:</label>
                                 <input type="file" id="imagen" name="imagen" accept="image/*" required>
                                 <button type="submit">Guardar cambios</button>
@@ -261,6 +280,7 @@
                                     <span class="cerrar cerrar-finalizacion">Atras</span>
                                     <h3>Ingresa información</h3>
                                     <form method="post" action="#" id="form-fininalizacion">
+                                        @csrf
                                         <label>Finalizacion titulo:</label>
                                         <input type="date" id="finalizacion" name="finalizacion" required>
                                         <button type="submit">Guardar cambios</button>
@@ -277,6 +297,7 @@
                                     <span class="cerrar cerrar-titulo">Atras</span>
                                     <h3>Ingresa información</h3>
                                     <form method="post" action="#" id="form-titulo">
+                                        @csrf
                                         <label>Nombre del titulo:</label>
                                         <input type="text" id="titulo" name="titulo" required>
                                         <button type="submit">Guardar cambios</button>
@@ -301,6 +322,7 @@
                             <span class="cerrar cerrar-experiencia">Atras</span>
                             <h3>Ingresa información</h3>
                             <form method="post" action="#" id="form-experiencia">
+                                @csrf
                                 <label>Cuentanos tu experiencia:</label>
                                 <input type="text" id="experiencia" name="experiencia" required> <br>
                                 <button type="submit">Guardar cambios</button>
@@ -318,35 +340,70 @@
 </body>
 </html>
 <script>  
-   // Modales y enlaces
+
+// ------------------telefono
 const modalTelefono = document.getElementById('modal-telefono');
-const modalImagen = document.getElementById('modal-imagen');
+const cerrarTelefonos = modalTelefono.querySelector('.cerrar');
+const linkTelefono = document.getElementById('telefono-a');
+const OcultarA = document.getElementById('GuardarTelefono');
+// Mostrar el modal de teléfono
+linkTelefono.addEventListener('click', (e) => {
+    e.preventDefault();
+    modalTelefono.style.display = 'flex';
+});
+
+// Cerrar modal de teléfono
+cerrarTelefonos.addEventListener('click', () => {
+    modalTelefono.style.display = 'none';
+});
+OcultarA.addEventListener('click',() =>{
+    linkTelefono.style.display = 'none';
+})
+//                 telefono
+
+//-----------------Ubicacion
 const modalUbicacion = document.getElementById('modal-ubicacion');
+const cerrarUbicacion = modalUbicacion.querySelector('.cerrar');
+const linkUbicacion = document.getElementById('ubicacion-a');
+const GuardarUbicacion = document.getElementById('GuardarUbicacion');
+
+// Mostrar el modal de ubicacion
+linkUbicacion.addEventListener('click', (e) =>{
+    e.preventDefault();
+    modalUbicacion.style.display ='flex';
+});
+// Cerrar modal de ubicacion
+cerrarUbicacion.addEventListener('click', () =>{
+    modalUbicacion.style.display = 'none';
+});
+GuardarUbicacion.addEventListener('click', (e) =>{
+    e.preventDefault();
+    linkUbicacion.style.display = 'none';
+});
+//                 Ubicacion
+
+   // Modales y enlaces
+const modalImagen = document.getElementById('modal-imagen');
 const modalFinalizacion = document.getElementById('modal-finalizacion');
 const modalTitulo = document.getElementById('modal-titulo');
 const modalExperiencia = document.getElementById('modal-experiencia');
 
 // Botones de cerrar
-const cerrarTelefonos = modalTelefono.querySelector('.cerrar');
 const cerrarImagenes = modalImagen.querySelector('.cerrar');
-const cerrarUbicacion = modalUbicacion.querySelector('.cerrar');
 const cerrarFinalizacion = modalFinalizacion.querySelector('.cerrar');
 const cerrarTitulo = modalTitulo.querySelector('.cerrar');
 const cerrarExperiencia = modalExperiencia.querySelector('.cerrar');
 
 // Enlaces para abrir modales
-const linkTelefono = document.getElementById('telefono-a');
 const linkImagen = document.getElementById('imagen-margen');
-const linkUbicacion = document.getElementById('ubicacion-a');
 const linkFinalizacion = document.getElementById('finalizacion-model');
 const linkTitulo = document.getElementById('titulo-a');
 const linkExperiencia = document.getElementById('experiencia-a');
 
-// Mostrar el modal de teléfono
-linkTelefono.addEventListener('click', (e) => {
-    e.preventDefault(); 
-    modalTelefono.style.display = 'flex';
-});
+
+
+
+
 
 // Mostrar el modal de imagen
 linkImagen.addEventListener('click', (e) => {
@@ -354,11 +411,7 @@ linkImagen.addEventListener('click', (e) => {
     modalImagen.style.display = 'flex';
 });
 
-// Mostrar el modal de ubicacion
-linkUbicacion.addEventListener('click', (e) =>{
-    e.preventDefault();
-    modalUbicacion.style.display ='flex';
-});
+
 
 // Mostrar el modal de finalizacion
 linkFinalizacion.addEventListener('click', (e) =>{
@@ -377,20 +430,14 @@ linkExperiencia.addEventListener('click',(e)=>{
     e.preventDefault();
     modalExperiencia.style.display = 'flex';
 });
-// Cerrar modal de teléfono
-cerrarTelefonos.addEventListener('click', () => {
-    modalTelefono.style.display = 'none';
-});
+
 
 // Cerrar modal de imagen
 cerrarImagenes.addEventListener('click', () => {
     modalImagen.style.display = 'none';
 });
 
-// Cerrar modal de ubicacion
-cerrarUbicacion.addEventListener('click', () =>{
-    modalUbicacion.style.display = 'none';
-})
+
 
 // Cerrar modal de finalicacion
 cerrarFinalizacion.addEventListener('click', () =>{

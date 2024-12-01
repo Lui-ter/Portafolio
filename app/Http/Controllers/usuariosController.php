@@ -18,7 +18,26 @@ class usuariosController extends Controller
         $usuario->Genero = $request->input('genero');
         $usuario->Correo = $request->input('correo');
         $usuario->save();
-        return view('secciones/portafolio', compact('usuario'));
+        $datos = usuarios::first();
+        return view('secciones/portafolio', compact('datos'));
 
     }
+    function nuevostelefono(Request $request){
+        //dd($request->all()); 
+    $usuario = usuarios::find($request->input('id'));
+
+    if ($usuario) {
+        // Actualizar el teléfono
+        $usuario->Telefono = $request->input('telefono');
+        $usuario->save();
+
+        $datos = usuarios::first();
+        return view('secciones/portafolio', compact('datos'));
+    } else {
+        
+        return redirect()->back()->withErrors(['mensaje' => 'Usuario no encontrado.']);
+    }
+}
+    
+    
 }
