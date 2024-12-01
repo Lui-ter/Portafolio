@@ -23,7 +23,7 @@ class usuariosController extends Controller
 
     }
     function nuevostelefono(Request $request){
-        //dd($request->all()); 
+        //dd($request->all());
     $usuario = usuarios::find($request->input('id'));
 
     if ($usuario) {
@@ -34,10 +34,22 @@ class usuariosController extends Controller
         $datos = usuarios::first();
         return view('secciones/portafolio', compact('datos'));
     } else {
-        
+
         return redirect()->back()->withErrors(['mensaje' => 'Usuario no encontrado.']);
     }
 }
-    
-    
+    function nuevosUbicacion(Request $request){
+    //dd($request->all());
+    $usuario = usuarios::find($request->input('id'));
+
+        if ($usuario) {
+            // Actualizar el teléfono
+            $usuario->Ubicacion = $request->input('ubicacion');
+            $usuario->save();
+            $datos = usuarios::first();
+            return view('secciones/portafolio', compact('datos'));
+        } else {
+            return redirect()->back()->withErrors(['mensaje' => 'Usuario no encontrado.']);
+        }
+    }
 }
