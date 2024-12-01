@@ -67,4 +67,19 @@ class usuariosController extends Controller
             return redirect()->back()->withErrors(['mensaje' => 'Usuario no encontrado.']);
         }
     }
+
+    function nuevoTitulo(Request $request){
+        //dd($request->all());
+        $usuario = usuarios::find($request->input('id'));
+
+        if ($usuario) {
+            // Actualizar el titulo
+            $usuario->Titulo1 = $request->input('titulo');
+            $usuario->save();
+            $datos = usuarios::first();
+            return view('secciones/portafolio', compact('datos'));
+        } else {
+            return redirect()->back()->withErrors(['mensaje' => 'Usuario no encontrado.']);
+        }
+    }
 }

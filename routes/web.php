@@ -23,3 +23,5 @@ Route::post('/recibirTelefono', [usuariosController::class,'nuevostelefono']);
 Route::post('/recibirUbicacion', [usuariosController::class,'nuevosUbicacion']);
 //  ruta para recibir el campo de año finalizacion para usuario
 Route::post('/recibirFecha', [usuariosController::class, 'nuevaFecha']);
+//  ruta para recibir el campo del titulo del usuario
+Route::post('/recibirTitulo', [usuariosController::class, 'nuevoTitulo']);
