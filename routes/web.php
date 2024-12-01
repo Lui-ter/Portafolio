@@ -21,3 +21,5 @@ Route::get('/portafolio', function () {
 Route::post('/recibirTelefono', [usuariosController::class,'nuevostelefono']);
 //  ruta para recibir el campo de ubicacion para usuario
 Route::post('/recibirUbicacion', [usuariosController::class,'nuevosUbicacion']);
+//  ruta para recibir el campo de año finalizacion para usuario
+Route::post('/recibirFecha', [usuariosController::class,'nuevaFecha']);

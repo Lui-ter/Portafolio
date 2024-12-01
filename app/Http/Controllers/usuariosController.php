@@ -52,4 +52,19 @@ class usuariosController extends Controller
             return redirect()->back()->withErrors(['mensaje' => 'Usuario no encontrado.']);
         }
     }
+
+    function nuevaFecha(Request $request){
+        //dd($request->all());
+        $usuario = usuarios::find($request->input('id'));
+
+        if ($usuario) {
+            // Actualizar la fecha del titulo
+            $usuario->Fecha_Titulo1 = $request->input('finalizacion');
+            $usuario->save();
+            $datos = usuarios::first();
+            return view('secciones/portafolio', compact('datos'));
+        } else {
+            return redirect()->back()->withErrors(['mensaje' => 'Usuario no encontrado.']);
+        }
+    }
 }
