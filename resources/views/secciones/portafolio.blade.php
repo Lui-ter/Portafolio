@@ -193,6 +193,10 @@
         display: none; /* Oculta el modal inicialmente */
         z-index: 1000; /* Asegura que esté encima de otros elementos */  
     }
+    .ocultar-Fecha{
+        display: none; /* Oculta el modal inicialmente */
+        z-index: 1000; /* Asegura que esté encima de otros elementos */  
+    }
 </style>
 </head>
 <body>
@@ -277,18 +281,18 @@
             <h2>Perfil profesional</h2>
             <div class="content">
                 <div class="education-item">
-                    <p><strong>Año de finalizacion:</strong>
+                    <p><strong>Año de finalizacion:</strong><i class="ocultar-Fecha" id="ocultar-Fecha">{{$datos->Fecha_Titulo1}}</i>
                         <a href="#" id="finalizacion-model">¿Deseas agregarlo?</a></p>
                              <!--Model con js-->
                             <div id="modal-finalizacion">
                                 <div class="datos-model">
                                     <span class="cerrar cerrar-finalizacion">Atras</span>
                                     <h3>Ingresa información</h3>
-                                    <form method="post" action="#" id="form-fininalizacion">
+                                    <form method="post" action="{{url('recibirFecha')}}" id="form-fininalizacion">
                                         @csrf
                                         <label>Finalizacion titulo:</label>
                                         <input type="date" id="finalizacion" name="finalizacion" required>
-                                        <button type="submit">Guardar cambios</button>
+                                        <button type="submit" id="Guardar-fecha">Guardar cambios</button>
                                     </form>
                                 </div>
                             </div>
@@ -382,27 +386,42 @@ cerrarUbicacion.addEventListener('click', () =>{
     modalUbicacion.style.display = 'none';
 });
 OcultarU.addEventListener('click', () =>{
-    
     linkUbicacion.style.display = 'none';
 });
-
 //                 Ubicacion
+
+//-----------------Fecha de titulo
+const modalFinalizacion = document.getElementById('modal-finalizacion');
+const cerrarFinalizacion = modalFinalizacion.querySelector('.cerrar');
+const linkFinalizacion = document.getElementById('finalizacion-model');
+const mostrarFecha = document.getElementById('ocultar-Fecha');
+
+linkFinalizacion.addEventListener('click', (e) =>{
+    e.preventDefault();
+    modalFinalizacion.style.display = 'flex';
+});
+
+cerrarFinalizacion.addEventListener('click', () =>{
+    modalFinalizacion.style.display = 'none';
+});
+cerrarFinalizacion.addEventListener('click',(e)=>{
+    mostrarFecha.style.display = 'flex';
+})
+//                 Fecha de titulo
 
    // Modales y enlaces
 const modalImagen = document.getElementById('modal-imagen');
-const modalFinalizacion = document.getElementById('modal-finalizacion');
+
 const modalTitulo = document.getElementById('modal-titulo');
 const modalExperiencia = document.getElementById('modal-experiencia');
 
 // Botones de cerrar
 const cerrarImagenes = modalImagen.querySelector('.cerrar');
-const cerrarFinalizacion = modalFinalizacion.querySelector('.cerrar');
 const cerrarTitulo = modalTitulo.querySelector('.cerrar');
 const cerrarExperiencia = modalExperiencia.querySelector('.cerrar');
 
 // Enlaces para abrir modales
 const linkImagen = document.getElementById('imagen-margen');
-const linkFinalizacion = document.getElementById('finalizacion-model');
 const linkTitulo = document.getElementById('titulo-a');
 const linkExperiencia = document.getElementById('experiencia-a');
 
@@ -418,12 +437,6 @@ linkImagen.addEventListener('click', (e) => {
 });
 
 
-
-// Mostrar el modal de finalizacion
-linkFinalizacion.addEventListener('click', (e) =>{
-    e.preventDefault();
-    modalFinalizacion.style.display = 'flex';
-});
 
 // Mostrar el modal de titulo
 linkTitulo.addEventListener('click', (e) =>{
@@ -441,13 +454,6 @@ linkExperiencia.addEventListener('click',(e)=>{
 // Cerrar modal de imagen
 cerrarImagenes.addEventListener('click', () => {
     modalImagen.style.display = 'none';
-});
-
-
-
-// Cerrar modal de finalicacion
-cerrarFinalizacion.addEventListener('click', () =>{
-    modalFinalizacion.style.display = 'none';
 });
 
 // Cerrar el moda de titulo
