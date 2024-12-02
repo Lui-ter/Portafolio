@@ -202,14 +202,18 @@
     display: inline; /* Muestra el elemento */
     z-index: 1000;
     }
-    .ocultar-Titulo{
-        display: none; /* Oculta inicialmente */
-        z-index: 1000;
+
+    .ocultar-Titulo {
+    display: none; /* Oculta inicialmente */
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
     }
+
     .mostrar-Titulo {
     display: inline; /* Muestra el elemento */
     z-index: 1000;
     }
+
+    
 
 </style>
 </head>
@@ -295,7 +299,7 @@
             <h2>Perfil profesional</h2>
             <div class="content">
                 <div class="education-item">
-                    <p><strong>Año de finalización:</strong> <i class="ocultar-Fecha" id="ocultar-Fecha">{{ $datos->Fecha_Titulo1 }}</i></p>
+                    <p><strong>Año de finalización:</strong> <i class="ocultarFecha" id="ocultar-Fecha">{{ $datos->Fecha_Titulo1 }}</i></p>
                     <a href="#" id="finalizacion-model">¿Deseas agregarlo?</a>
 
                              <!--Model con js-->
@@ -315,22 +319,24 @@
                             </div>
                      <!--Model con js-->
                     
-                        <p><strong>Titulo:</strong> <i class="ocultar-Titulo">{{$datos->Titulo}}</i>
-                    <a href="#" id="titulo-a">¿Deseas agregarlo?</a></p>
-                             <!--Model con js-->
-                             <div id="modal-titulo">
-                                <div class="datos-model">
-                                    <span class="cerrar cerrar-titulo">Atras</span>
-                                    <h3>Ingresa información</h3>
-                                    <form method="post" action="{{url('recibirTitulo')}}" id="form-titulo">
-                                        @csrf
-                                        <label>Nombre del titulo:</label>
-                                        <input type="text" id="titulo" name="titulo" required>
-                                        <input type="hidden" name="id" value="{{$datos->id}}">
-                                        <button type="submit">Guardar cambios</button>
-                                    </form>
-                                </div>
-                            </div>
+                     <p><strong>Título:</strong> <i class="ocultar-Titulo" id="ocultar-Titulo">{{ $datos->Titulo }}</i></p>
+                     <a href="#" id="titulo-a">¿Deseas agregarlo?</a>
+                     
+                     <!-- Modal con JavaScript -->
+                     <div id="modal-titulo">
+                         <div class="datos-model">
+                             <span class="cerrar cerrar-titulo">Atras</span>
+                             <h3>Ingresa información</h3>
+                             <form method="post" action="{{ url('recibirTitulo') }}" id="form-titulo">
+                                 @csrf
+                                 <label>Nombre del título:</label>
+                                 <input type="text" id="titulo" name="titulo" required>
+                                 <input type="hidden" name="id" value="{{ $datos->id }}">
+                                 <button type="submit">Guardar cambios</button>
+                             </form>
+                         </div>
+                     </div>
+                     
                      <!--Model con js-->
                 </div>
             </div>
@@ -424,9 +430,6 @@ cerrarFinalizacion.addEventListener('click', () => {
     fechaElemento.classList.remove('ocultar-Fecha');
     fechaElemento.classList.add('mostrar-Fecha');
 });
-
-
-
 //                 Fecha de titulo
 
 //-----------------Titulo
@@ -434,15 +437,18 @@ const modalTitulo = document.getElementById('modal-titulo');
 const cerrarTitulo = modalTitulo.querySelector('.cerrar');
 const linkTitulo = document.getElementById('titulo-a');
 const TituloElemento = document.getElementById('ocultar-Titulo');
-linkTitulo.addEventListener('click', (e) =>{
+
+linkTitulo.addEventListener('click', (e) => {
     e.preventDefault();
     modalTitulo.style.display = 'flex';
 });
-cerrarTitulo.addEventListener('click', () =>{
+
+cerrarTitulo.addEventListener('click', () => {
     modalTitulo.style.display = 'none';
     TituloElemento.classList.remove('ocultar-Titulo');
     TituloElemento.classList.add('mostrar-Titulo');
 });
+
 
 
 //                 Titulo
