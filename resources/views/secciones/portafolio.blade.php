@@ -189,6 +189,10 @@
     display: flex;
     z-index: 1000;
     }
+    .ocultar-resultado{
+    display: none;
+    z-index: 1000;
+    }
 </style>
 </head>
 <body>
@@ -228,7 +232,8 @@
                     
                     
                          <!--Model para el telefono-->
-                    <p><strong>Ubicacion:</strong><a href="#" id="ubicacion-a" class="ubicacion-a">¿Deseas agregarlo?</a></p></p>
+                    <p><strong>Ubicacion:</strong><b class="ocultar-resultado" id="Ocultar-resultado">{{$datos->Ubicacion}}</b>
+                    <a href="#" id="ubicacion-a" class="ubicacion-a">¿Deseas agregarlo?</a></p></p>
                     
                     <!--Model para ubicacion -->
                     <div id="modal-ubicacion">
@@ -345,7 +350,7 @@
 const modalTelefono = document.getElementById('modal-telefono');
 const cerrarTelefonos = modalTelefono.querySelector('.cerrar');
 const linkTelefono = document.getElementById('telefono-a');
-const OcultarA = document.getElementById('GuardarTelefono');
+const OcultarT = document.getElementById('GuardarTelefono');
 // Mostrar el modal de teléfono
 linkTelefono.addEventListener('click', (e) => {
     e.preventDefault();
@@ -356,7 +361,7 @@ linkTelefono.addEventListener('click', (e) => {
 cerrarTelefonos.addEventListener('click', () => {
     modalTelefono.style.display = 'none';
 });
-OcultarA.addEventListener('click',() =>{
+OcultarT.addEventListener('click',() =>{
     linkTelefono.style.display = 'none';
 })
 //                 telefono
@@ -365,20 +370,24 @@ OcultarA.addEventListener('click',() =>{
 const modalUbicacion = document.getElementById('modal-ubicacion');
 const cerrarUbicacion = modalUbicacion.querySelector('.cerrar');
 const linkUbicacion = document.getElementById('ubicacion-a');
-const GuardarUbicacion = document.getElementById('GuardarUbicacion');
+const OcultarU = document.getElementById('GuardarUbicacion');
+const MostrarUbicacion = document.getElementById('Ocultar-resultado');
 
-// Mostrar el modal de ubicacion
 linkUbicacion.addEventListener('click', (e) =>{
     e.preventDefault();
     modalUbicacion.style.display ='flex';
 });
-// Cerrar modal de ubicacion
+
 cerrarUbicacion.addEventListener('click', () =>{
     modalUbicacion.style.display = 'none';
 });
-GuardarUbicacion.addEventListener('click', (e) =>{
+OcultarU.addEventListener('click', (e) =>{
     e.preventDefault();
     linkUbicacion.style.display = 'none';
+});
+OcultarU.addEventListener('click', (e) =>{
+    e.preventDefault();
+    MostrarUbicacion.style.display = 'flex';
 });
 //                 Ubicacion
 
