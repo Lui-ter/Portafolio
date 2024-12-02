@@ -202,16 +202,8 @@
     display: inline; /* Muestra el elemento */
     z-index: 1000;
     }
+   
 
-    .ocultar-Titulo {
-    display: none; /* Oculta inicialmente */
-    z-index: 1000; /* Asegura que esté encima de otros elementos */
-    }
-
-    .mostrar-Titulo {
-    display: inline; /* Muestra el elemento */
-    z-index: 1000;
-    }
 
     
 
@@ -319,8 +311,8 @@
                             </div>
                      <!--Model con js-->
                     
-                     <p><strong>Título:</strong> <i class="ocultar-Titulo" id="ocultar-Titulo">{{ $datos->Titulo }}</i></p>
-                     <a href="#" id="titulo-a">¿Deseas agregarlo?</a>
+                     <p><strong>Título:</strong> <i>{{ $datos->Titulo1 }}</i></p>
+                     <a href="#" id="Titulo-a">¿Deseas agregarlo?</a>
                      
                      <!-- Modal con JavaScript -->
                      <div id="modal-titulo">
@@ -332,7 +324,7 @@
                                  <label>Nombre del título:</label>
                                  <input type="text" id="titulo" name="titulo" required>
                                  <input type="hidden" name="id" value="{{ $datos->id }}">
-                                 <button type="submit">Guardar cambios</button>
+                                 <button type="submit" id="GuardarTelefono">Guardar cambios</button>
                              </form>
                          </div>
                      </div>
@@ -347,17 +339,18 @@
             <h2>Experiencia</h2>
             <div class="content">
                 <div class="experience-item">
-                    <p><strong>Experiencia:</strong>
+                    <p><strong>Experiencia:</strong> <i>{{$datos->Experiencia}}</i>
                     <p><a href="#" id="experiencia-a">¿Deseas agregarlo?</a></p>
                     <!--Model con js-->
                     <div id="modal-experiencia">
                         <div class="datos-model">
                             <span class="cerrar cerrar-experiencia">Atras</span>
                             <h3>Ingresa información</h3>
-                            <form method="post" action="#" id="form-experiencia">
+                            <form method="post" action="{{url('recibirExperiencia')}}" id="form-experiencia">
                                 @csrf
                                 <label>Cuentanos tu experiencia:</label>
                                 <input type="text" id="experiencia" name="experiencia" required> <br>
+                                <input type="hidden" name="id" value="{{$datos->id}}">
                                 <button type="submit">Guardar cambios</button>
                             </form>
                         </div>
@@ -378,7 +371,6 @@
 const modalTelefono = document.getElementById('modal-telefono');
 const cerrarTelefonos = modalTelefono.querySelector('.cerrar');
 const linkTelefono = document.getElementById('telefono-a');
-const OcultarT = document.getElementById('GuardarTelefono');
 // Mostrar el modal de teléfono
 linkTelefono.addEventListener('click', (e) => {
     e.preventDefault();
@@ -389,16 +381,15 @@ linkTelefono.addEventListener('click', (e) => {
 cerrarTelefonos.addEventListener('click', () => {
     modalTelefono.style.display = 'none';
 });
-OcultarT.addEventListener('click',() =>{
-    linkTelefono.style.display = 'none';
-});
+
+
 //                 telefono
 
 //-----------------Ubicacion
 const modalUbicacion = document.getElementById('modal-ubicacion');
 const cerrarUbicacion = modalUbicacion.querySelector('.cerrar');
 const linkUbicacion = document.getElementById('ubicacion-a');
-const OcultarU = document.getElementById('GuardarUbicacion');
+
 
 
 linkUbicacion.addEventListener('click', (e) =>{
@@ -409,16 +400,14 @@ linkUbicacion.addEventListener('click', (e) =>{
 cerrarUbicacion.addEventListener('click', () =>{
     modalUbicacion.style.display = 'none';
 });
-OcultarU.addEventListener('click', () =>{
-    linkUbicacion.style.display = 'none';
-});
+
 //                 Ubicacion
 
 //-----------------Fecha de titulo
 const modalFinalizacion = document.getElementById('modal-finalizacion');
 const cerrarFinalizacion = modalFinalizacion.querySelector('.cerrar');
 const linkFinalizacion = document.getElementById('finalizacion-model');
-const fechaElemento = document.getElementById('ocultar-Fecha');
+
 
 linkFinalizacion.addEventListener('click', (e) => {
     e.preventDefault();
@@ -427,49 +416,47 @@ linkFinalizacion.addEventListener('click', (e) => {
 
 cerrarFinalizacion.addEventListener('click', () => {
     modalFinalizacion.style.display = 'none';
-    fechaElemento.classList.remove('ocultar-Fecha');
-    fechaElemento.classList.add('mostrar-Fecha');
+    
 });
 //                 Fecha de titulo
 
-//-----------------Titulo
+// ----------------- Título
 const modalTitulo = document.getElementById('modal-titulo');
 const cerrarTitulo = modalTitulo.querySelector('.cerrar');
-const linkTitulo = document.getElementById('titulo-a');
-const TituloElemento = document.getElementById('ocultar-Titulo');
+const linkTitulo = document.getElementById('Titulo-a');
+
 
 linkTitulo.addEventListener('click', (e) => {
     e.preventDefault();
     modalTitulo.style.display = 'flex';
 });
-
 cerrarTitulo.addEventListener('click', () => {
     modalTitulo.style.display = 'none';
-    TituloElemento.classList.remove('ocultar-Titulo');
-    TituloElemento.classList.add('mostrar-Titulo');
 });
 
 
+// ----------------- Experiencia
+const modalExperiencia = document.getElementById('modal-experiencia');
+const cerrarExperiencia = modalExperiencia.querySelector('.cerrar');
+const linkExperiencia = document.getElementById('experiencia-a');
 
-//                 Titulo
+linkExperiencia.addEventListener('click', (e) => {
+    e.preventDefault();
+    modalExperiencia.style.display = 'flex';
+});
+
+cerrarExperiencia.addEventListener('click', () => {
+    modalExperiencia.style.display = 'none';
+    
+});
+
 
    // Modales y enlaces
 const modalImagen = document.getElementById('modal-imagen');
-
-const modalExperiencia = document.getElementById('modal-experiencia');
-
 // Botones de cerrar
 const cerrarImagenes = modalImagen.querySelector('.cerrar');
-const cerrarExperiencia = modalExperiencia.querySelector('.cerrar');
-
 // Enlaces para abrir modales
 const linkImagen = document.getElementById('imagen-margen');
-const linkExperiencia = document.getElementById('experiencia-a');
-
-
-
-
-
 
 // Mostrar el modal de imagen
 linkImagen.addEventListener('click', (e) => {
@@ -477,31 +464,9 @@ linkImagen.addEventListener('click', (e) => {
     modalImagen.style.display = 'flex';
 });
 
-
-
-// Mostrar el modal de titulo
-linkTitulo.addEventListener('click', (e) =>{
-    e.preventDefault();
-    modalTitulo.style.display = 'flex';
-});
-
-// Mostrarb el modal de experiencia
-linkExperiencia.addEventListener('click',(e)=>{
-    e.preventDefault();
-    modalExperiencia.style.display = 'flex';
-});
-
-
 // Cerrar modal de imagen
 cerrarImagenes.addEventListener('click', () => {
     modalImagen.style.display = 'none';
 });
 
-// Cerrar el moda de titulo
-
-
-// Cerrar el moda de experiencia
-cerrarExperiencia.addEventListener('click', ()=>{
-    modalExperiencia.style.display = 'none';
-});    
 </script>

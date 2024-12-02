@@ -71,7 +71,6 @@ class usuariosController extends Controller
     function nuevoTitulo(Request $request){
         //dd($request->all());
         $usuario = usuarios::find($request->input('id'));
-
         if ($usuario) {
             // Actualizar el titulo
             $usuario->Titulo1 = $request->input('titulo');
@@ -81,5 +80,18 @@ class usuariosController extends Controller
         } else {
             return redirect()->back()->withErrors(['mensaje' => 'Usuario no encontrado.']);
         }
+    }
+    function nuevoExperiencia(Request $request){
+      //dd($request->all());
+      $usuario = usuarios::find($request->input('id'));
+      if ($usuario) {
+          // Actualizar el titulo
+          $usuario->Experiencia = $request->input('experiencia');
+          $usuario->save();
+          $datos = usuarios::first();
+          return view('secciones/portafolio', compact('datos'));
+      } else {
+          return redirect()->back()->withErrors(['mensaje' => 'Usuario no encontrado.']);
+      }  
     }
 }
