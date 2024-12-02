@@ -44,7 +44,7 @@ class usuariosController extends Controller
 
         if ($usuario) {
             // Actualizar el teléfono
-            $usuario->Ubicacion = $request->input('ubicacion');
+            $usuario->Dirección = $request->input('ubicacion');
             $usuario->save();
             $datos = usuarios::first();
             return view('secciones/portafolio', compact('datos'));

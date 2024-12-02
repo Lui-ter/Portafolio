@@ -189,9 +189,9 @@
     display: flex;
     z-index: 1000;
     }
-    .ocultar-resultado{
-    display: none;
-    z-index: 1000;
+    .Ocultar-resultado{
+        display: none; /* Oculta el modal inicialmente */
+        z-index: 1000; /* Asegura que esté encima de otros elementos */  
     }
 </style>
 </head>
@@ -371,7 +371,7 @@ const modalUbicacion = document.getElementById('modal-ubicacion');
 const cerrarUbicacion = modalUbicacion.querySelector('.cerrar');
 const linkUbicacion = document.getElementById('ubicacion-a');
 const OcultarU = document.getElementById('GuardarUbicacion');
-const MostrarUbicacion = document.getElementById('Ocultar-resultado');
+
 
 linkUbicacion.addEventListener('click', (e) =>{
     e.preventDefault();
@@ -381,14 +381,11 @@ linkUbicacion.addEventListener('click', (e) =>{
 cerrarUbicacion.addEventListener('click', () =>{
     modalUbicacion.style.display = 'none';
 });
-OcultarU.addEventListener('click', (e) =>{
-    e.preventDefault();
+OcultarU.addEventListener('click', () =>{
+    
     linkUbicacion.style.display = 'none';
 });
-OcultarU.addEventListener('click', (e) =>{
-    e.preventDefault();
-    MostrarUbicacion.style.display = 'flex';
-});
+
 //                 Ubicacion
 
    // Modales y enlaces
