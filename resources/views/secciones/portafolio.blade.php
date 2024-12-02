@@ -193,10 +193,16 @@
         display: none; /* Oculta el modal inicialmente */
         z-index: 1000; /* Asegura que esté encima de otros elementos */  
     }
-    .ocultar-Fecha{
-        display: none; /* Oculta el modal inicialmente */
-        z-index: 1000; /* Asegura que esté encima de otros elementos */  
+    .ocultar-Fecha {
+    display: none; /* Oculta inicialmente */
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
     }
+
+    .mostrar-Fecha {
+    display: inline; /* Muestra el elemento */
+    z-index: 1000;
+    }
+
 </style>
 </head>
 <body>
@@ -281,19 +287,22 @@
             <h2>Perfil profesional</h2>
             <div class="content">
                 <div class="education-item">
-                    <p><strong>Año de finalizacion:</strong><i class="ocultar-Fecha" id="ocultar-Fecha">{{$datos->Fecha_Titulo1}}</i>
-                        <a href="#" id="finalizacion-model">¿Deseas agregarlo?</a></p>
+                    <p><strong>Año de finalización:</strong> <i class="ocultar-Fecha" id="ocultar-Fecha">{{ $datos->Fecha_Titulo1 }}</i></p>
+                    <a href="#" id="finalizacion-model">¿Deseas agregarlo?</a>
+
                              <!--Model con js-->
                             <div id="modal-finalizacion">
                                 <div class="datos-model">
                                     <span class="cerrar cerrar-finalizacion">Atras</span>
                                     <h3>Ingresa información</h3>
-                                    <form method="post" action="{{url('recibirFecha')}}" id="form-fininalizacion">
-                                        @csrf
+                                    <form method="post" action="{{url('recibirFecha')}}" id="form-finalizacion">                                       
+                                         @csrf
                                         <label>Finalizacion titulo:</label>
                                         <input type="date" id="finalizacion" name="finalizacion" required>
+                                        <input type="hidden" name="id" value="{{ $datos->id }}">
                                         <button type="submit" id="Guardar-fecha">Guardar cambios</button>
                                     </form>
+                                    
                                 </div>
                             </div>
                      <!--Model con js-->
@@ -367,7 +376,7 @@ cerrarTelefonos.addEventListener('click', () => {
 });
 OcultarT.addEventListener('click',() =>{
     linkTelefono.style.display = 'none';
-})
+});
 //                 telefono
 
 //-----------------Ubicacion
@@ -394,19 +403,21 @@ OcultarU.addEventListener('click', () =>{
 const modalFinalizacion = document.getElementById('modal-finalizacion');
 const cerrarFinalizacion = modalFinalizacion.querySelector('.cerrar');
 const linkFinalizacion = document.getElementById('finalizacion-model');
-const mostrarFecha = document.getElementById('ocultar-Fecha');
+const fechaElemento = document.getElementById('ocultar-Fecha');
 
-linkFinalizacion.addEventListener('click', (e) =>{
+linkFinalizacion.addEventListener('click', (e) => {
     e.preventDefault();
     modalFinalizacion.style.display = 'flex';
 });
 
-cerrarFinalizacion.addEventListener('click', () =>{
+cerrarFinalizacion.addEventListener('click', () => {
     modalFinalizacion.style.display = 'none';
+    fechaElemento.classList.remove('ocultar-Fecha');
+    fechaElemento.classList.add('mostrar-Fecha');
 });
-cerrarFinalizacion.addEventListener('click',(e)=>{
-    mostrarFecha.style.display = 'flex';
-})
+
+
+
 //                 Fecha de titulo
 
    // Modales y enlaces
