@@ -24,12 +24,8 @@ return new class extends Migration
             $table->string('imagen')->nullable();
             $table->string('Telefono', 12)->nullable();
             $table->string('Ciudad', 30)->nullable();
-            $table->string('Dirección', 40)->nullable();
-            $table->string('Descripción', 255)->nullable();
             $table->string('Titulo1', 40)->nullable();
             $table->date('Fecha_Titulo1')->nullable();
-            $table->string('Titulo2', 40)->nullable();
-            $table->date('Fecha_Titulo2')->nullable();
             $table->string('Experiencia', 255)->nullable();
             $table->timestamps();
         });

@@ -212,7 +212,7 @@
                     <p><strong>Edad:</strong>{{$datos->Edad}}</p>
                     <p><strong>Genero:</strong>{{$datos->Genero}}</p>
                     <p><strong>Correo:</strong>{{$datos->Correo}}</p>
-                    <strong>Telefono:</strong><p clase="ocultar-telefono" id="ocultar-telefono">{{$datos->Telefono}}</p>
+                    <strong>Telefono:</strong><i clase="ocultar-telefono" id="ocultar-telefono">{{$datos->Telefono}}</i>
                     <a href="#" id="telefono-a" class="telefono-a">¿Deseas agregarlo?</a></p>
                         <!--Model para el telefono-->
                         <div id="modal-telefono">
@@ -232,7 +232,7 @@
                     
                     
                          <!--Model para el telefono-->
-                    <p><strong>Ubicacion:</strong><b class="ocultar-resultado" id="Ocultar-resultado">{{$datos->Ubicacion}}</b>
+                    <p><strong>Ubicacion:</strong><i class="ocultar-resultado" id="Ocultar-resultado">{{$datos->Ciudad}}</i>
                     <a href="#" id="ubicacion-a" class="ubicacion-a">¿Deseas agregarlo?</a></p></p>
                     
                     <!--Model para ubicacion -->
