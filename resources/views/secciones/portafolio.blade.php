@@ -202,6 +202,14 @@
     display: inline; /* Muestra el elemento */
     z-index: 1000;
     }
+    .ocultar-Titulo{
+        display: none; /* Oculta inicialmente */
+        z-index: 1000;
+    }
+    .mostrar-Titulo {
+    display: inline; /* Muestra el elemento */
+    z-index: 1000;
+    }
 
 </style>
 </head>
@@ -307,17 +315,18 @@
                             </div>
                      <!--Model con js-->
                     
-                        <p><strong>Titulo:</strong>
+                        <p><strong>Titulo:</strong> <i class="ocultar-Titulo">{{$datos->Titulo}}</i>
                     <a href="#" id="titulo-a">¿Deseas agregarlo?</a></p>
                              <!--Model con js-->
                              <div id="modal-titulo">
                                 <div class="datos-model">
                                     <span class="cerrar cerrar-titulo">Atras</span>
                                     <h3>Ingresa información</h3>
-                                    <form method="post" action="#" id="form-titulo">
+                                    <form method="post" action="{{url('recibirTitulo')}}" id="form-titulo">
                                         @csrf
                                         <label>Nombre del titulo:</label>
                                         <input type="text" id="titulo" name="titulo" required>
+                                        <input type="hidden" name="id" value="{{$datos->id}}">
                                         <button type="submit">Guardar cambios</button>
                                     </form>
                                 </div>
@@ -420,20 +429,35 @@ cerrarFinalizacion.addEventListener('click', () => {
 
 //                 Fecha de titulo
 
+//-----------------Titulo
+const modalTitulo = document.getElementById('modal-titulo');
+const cerrarTitulo = modalTitulo.querySelector('.cerrar');
+const linkTitulo = document.getElementById('titulo-a');
+const TituloElemento = document.getElementById('ocultar-Titulo');
+linkTitulo.addEventListener('click', (e) =>{
+    e.preventDefault();
+    modalTitulo.style.display = 'flex';
+});
+cerrarTitulo.addEventListener('click', () =>{
+    modalTitulo.style.display = 'none';
+    TituloElemento.classList.remove('ocultar-Titulo');
+    TituloElemento.classList.add('mostrar-Titulo');
+});
+
+
+//                 Titulo
+
    // Modales y enlaces
 const modalImagen = document.getElementById('modal-imagen');
 
-const modalTitulo = document.getElementById('modal-titulo');
 const modalExperiencia = document.getElementById('modal-experiencia');
 
 // Botones de cerrar
 const cerrarImagenes = modalImagen.querySelector('.cerrar');
-const cerrarTitulo = modalTitulo.querySelector('.cerrar');
 const cerrarExperiencia = modalExperiencia.querySelector('.cerrar');
 
 // Enlaces para abrir modales
 const linkImagen = document.getElementById('imagen-margen');
-const linkTitulo = document.getElementById('titulo-a');
 const linkExperiencia = document.getElementById('experiencia-a');
 
 
@@ -468,9 +492,7 @@ cerrarImagenes.addEventListener('click', () => {
 });
 
 // Cerrar el moda de titulo
-cerrarTitulo.addEventListener('click', () =>{
-    modalTitulo.style.display = 'none';
-});
+
 
 // Cerrar el moda de experiencia
 cerrarExperiencia.addEventListener('click', ()=>{
