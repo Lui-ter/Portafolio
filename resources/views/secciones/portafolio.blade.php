@@ -74,6 +74,14 @@
         font-size: 1.2em;
     }
 
+    .photo{
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        align-items: center;
+        width: 180;
+        height: 230;
+    }
     .section .content {
         padding: 15px;
     }
@@ -88,14 +96,11 @@
         flex: 1;
     }
 
-    .personal-info .photo {
-        margin-left: 20px;
-    }
-
     .personal-info .photo img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
+        width: 160px;
+        height: 220px;
+        border: black;
+        border-radius: 10px;
         object-fit: cover;
     }
 
@@ -203,10 +208,26 @@
     z-index: 1000;
     }
 
+    .eliminar{
+        height: 40px;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
+    .delete{
+        height: 30px;
+        background-color: rgba(253, 62, 62, 0.904);
+        border-radius: 5px;
+        color: white;
+        border-color: rgba(0, 0, 0, 0);
+    }
 
-
-
+    .delete:hover{
+        background-color: rgba(255, 0, 0, 0.904);
+        cursor: pointer;
+    }
 </style>
 </head>
 <body>
@@ -267,7 +288,7 @@
 
                 </div>
                 <div class="photo"><img src="data:image/jpeg;base64,{{ base64_encode($datos->imagen) }}" alt="Imagen">
-                    <a href="#" id="imagen-margen">¿Deseas agregar una imagen?</a>
+                    <div class="photo"><a href="#" id="imagen-margen">¿Deseas agregar una imagen?</a></div>
                     <!--Model con js-->
                     <div id="modal-imagen">
                         <div class="datos-model">
@@ -360,6 +381,7 @@
                 </div>
             </div>
         </section>
+        <div class="eliminar"><button class="delete"><a href="{{ url('/eliminar') }}"></a>Eliminar</button></div>
     </div>
     <footer class="footer">
         <p>&copy; 2024 Mi Portafolio. Todos los derechos reservados.</p>

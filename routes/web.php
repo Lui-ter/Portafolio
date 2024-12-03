@@ -31,4 +31,3 @@ Route::post('/recibirExperiencia', [usuariosController::class, 'nuevoExperiencia
 Route::post('/recibirImagen', [usuariosController::class, 'nuevaImagen']);
 // Ruta par eliminar los registros
 Route::post('/eliminar',[usuariosController::class,'eliminar']);
-
