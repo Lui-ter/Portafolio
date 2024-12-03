@@ -195,39 +195,33 @@
     z-index: 1000;
     }
     .Ocultar-resultado{
-        display: none; /* Oculta el modal inicialmente */
-        z-index: 1000; /* Asegura que esté encima de otros elementos */
+        display: none; 
+        z-index: 1000; 
     }
     .ocultar-Fecha {
-    display: none; /* Oculta inicialmente */
-    z-index: 1000; /* Asegura que esté encima de otros elementos */
+    display: none; 
+    z-index: 1000; 
     }
 
     .mostrar-Fecha {
-    display: inline; /* Muestra el elemento */
+    display: inline; 
     z-index: 1000;
     }
+    .botonEliminar {
+    background-color: #ff4d4d; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
 
-    .eliminar{
-        height: 40px;
-        width: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.botonEliminar:hover {
+    background-color: #e60000;
+}
 
-    .delete{
-        height: 30px;
-        background-color: rgba(253, 62, 62, 0.904);
-        border-radius: 5px;
-        color: white;
-        border-color: rgba(0, 0, 0, 0);
-    }
-
-    .delete:hover{
-        background-color: rgba(255, 0, 0, 0.904);
-        cursor: pointer;
-    }
 </style>
 </head>
 <body>
@@ -381,8 +375,14 @@
                 </div>
             </div>
         </section>
-        <div class="eliminar"><button class="delete"><a href="{{ url('/eliminar') }}"></a>Eliminar</button></div>
-    </div>
+        <form action="{{ url('eliminar') }}" method="post" style="text-align: center;">
+            @csrf
+            <input type="hidden" name="id" value="{{ $datos->id }}">
+            <button type="submit" class="botonEliminar">Eliminar</button>
+        </form>
+        
+
+        </div>
     <footer class="footer">
         <p>&copy; 2024 Mi Portafolio. Todos los derechos reservados.</p>
     </footer>

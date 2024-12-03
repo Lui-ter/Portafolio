@@ -120,6 +120,6 @@ class usuariosController extends Controller
         // Redirigir con un mensaje de error si el usuario no se encuentra
         return redirect()->back()->withErrors(['mensaje' => 'Usuario no encontrado.']);
     }
-}
+    }
 
 }
