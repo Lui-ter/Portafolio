@@ -138,7 +138,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
     z-index: 1000; /* Asegura que esté encima de otros elementos */
@@ -168,14 +168,14 @@
     }
 
     #form-experiencia #experiencia {
-    width: auto; 
-    height: 80px; 
-    padding: 10px; 
+    width: auto;
+    height: 80px;
+    padding: 10px;
     font-size: 16px; /
-    border: 1px solid #ccc; 
-    border-radius: 8px; 
+    border: 1px solid #ccc;
+    border-radius: 8px;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-    resize: none; 
+    resize: none;
     }
     .ocultar-telefono{
     display: none; /* Oculta el modal inicialmente */
@@ -191,7 +191,7 @@
     }
     .Ocultar-resultado{
         display: none; /* Oculta el modal inicialmente */
-        z-index: 1000; /* Asegura que esté encima de otros elementos */  
+        z-index: 1000; /* Asegura que esté encima de otros elementos */
     }
     .ocultar-Fecha {
     display: none; /* Oculta inicialmente */
@@ -202,10 +202,10 @@
     display: inline; /* Muestra el elemento */
     z-index: 1000;
     }
-   
 
 
-    
+
+
 
 </style>
 </head>
@@ -240,15 +240,15 @@
                                     <input type="hidden" name="id" value="{{ $datos->id }}">
                                     <button type="submit" id="GuardarTelefono">Guardar cambios</button>
                                 </form>
-                                
+
                             </div>
-                        </div>  
-                    
-                    
+                        </div>
+
+
                          <!--Model para el telefono-->
                     <p><strong>Ubicacion:</strong><i class="ocultar-resultado" id="Ocultar-resultado">{{$datos->Ciudad}}</i>
                     <a href="#" id="ubicacion-a" class="ubicacion-a">¿Deseas agregarlo?</a></p></p>
-                    
+
                     <!--Model para ubicacion -->
                     <div id="modal-ubicacion">
                         <div class="datos-model">
@@ -262,11 +262,11 @@
                                 <button type="submit" id="GuardarUbicacion">Guardar cambios</button>
                             </form>
                         </div>
-                    </div>  
+                    </div>
                      <!--Model para la ubicacion-->
-                    
+
                 </div>
-                <div class="photo"><i>{{$datos->imagen}}</i>
+                <div class="photo"><img src="data:image/jpeg;base64,{{ base64_encode($datos->imagen) }}" alt="Imagen">
                     <a href="#" id="imagen-margen">¿Deseas agregar una imagen?</a>
                     <!--Model con js-->
                     <div id="modal-imagen">
@@ -277,7 +277,7 @@
                                 @csrf
                                 <label>Imagen:</label>
                                 <input type="file" id="imagen" name="imagen" accept="image/*" required>
-                                <input type="hidden" name="imagen" value="{{$datos->id}}">
+                                <input type="hidden" name="id" value="{{$datos->id}}">
                                 <button type="submit">Guardar cambios</button>
                             </form>
                         </div>
@@ -300,21 +300,21 @@
                                 <div class="datos-model">
                                     <span class="cerrar cerrar-finalizacion">Atras</span>
                                     <h3>Ingresa información</h3>
-                                    <form method="post" action="{{url('recibirFecha')}}" id="form-finalizacion">                                       
+                                    <form method="post" action="{{url('recibirFecha')}}" id="form-finalizacion">
                                          @csrf
                                         <label>Finalizacion titulo:</label>
                                         <input type="date" id="finalizacion" name="finalizacion" required>
                                         <input type="hidden" name="id" value="{{ $datos->id }}">
                                         <button type="submit" id="Guardar-fecha">Guardar cambios</button>
                                     </form>
-                                    
+
                                 </div>
                             </div>
                      <!--Model con js-->
-                    
+
                      <p><strong>Título:</strong> <i>{{ $datos->Titulo1 }}</i></p>
                      <a href="#" id="Titulo-a">¿Deseas agregarlo?</a>
-                     
+
                      <!-- Modal con JavaScript -->
                      <div id="modal-titulo">
                          <div class="datos-model">
@@ -329,7 +329,7 @@
                              </form>
                          </div>
                      </div>
-                     
+
                      <!--Model con js-->
                 </div>
             </div>
@@ -366,7 +366,7 @@
     </footer>
 </body>
 </html>
-<script>  
+<script>
 
 // ------------------telefono
 const modalTelefono = document.getElementById('modal-telefono');
@@ -417,7 +417,7 @@ linkFinalizacion.addEventListener('click', (e) => {
 
 cerrarFinalizacion.addEventListener('click', () => {
     modalFinalizacion.style.display = 'none';
-    
+
 });
 //                 Fecha de titulo
 
@@ -448,7 +448,7 @@ linkExperiencia.addEventListener('click', (e) => {
 
 cerrarExperiencia.addEventListener('click', () => {
     modalExperiencia.style.display = 'none';
-    
+
 });
 
 

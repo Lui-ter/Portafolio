@@ -92,26 +92,23 @@ class usuariosController extends Controller
           return view('secciones/portafolio', compact('datos'));
       } else {
           return redirect()->back()->withErrors(['mensaje' => 'Usuario no encontrado.']);
-      }  
+      }
     }
     function nuevaImagen(Request $request){
         $usuario = usuarios::find($request->input('id'));
         if($usuario){
-            if ($request->hasFile('imagen')) {
-                $archivo = $request->file('imagen');
-                $rutaImagen = $archivo->store('imagenes', 'public'); // Guardar en 'storage/app/public/imagenes'
-    
-                // Actualizar el campo de la base de datos
-                $usuario->imagen = $rutaImagen;
-                $usuario->save();
-            }
+            // Obtener la imagen del formulario
+            $img = $request->file('imagen');
+            // Covertirlo a binario
+            $imagen = file_get_contents($img);
+            // Guardar o actualizar el campo de la base de datos
+            $usuario->imagen = $imagen;
+            $usuario->save();
             $datos = usuarios::first();
             return view('secciones/portafolio', compact('datos'));
         } else {
             return redirect()->back()->withErrors(['mensaje' => 'Usuario no encontrado.']);
-        }    
-      
-        
-  
+        }
     }
+
 }
