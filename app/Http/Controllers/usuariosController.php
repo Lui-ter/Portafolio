@@ -110,5 +110,16 @@ class usuariosController extends Controller
             return redirect()->back()->withErrors(['mensaje' => 'Usuario no encontrado.']);
         }
     }
+    function eliminar(Request $request){
+    $usuario = usuarios::find($request->input('id'));
+    if ($usuario) {
+        
+        $usuario->delete();
+        return view('secciones/index');
+    } else {
+        // Redirigir con un mensaje de error si el usuario no se encuentra
+        return redirect()->back()->withErrors(['mensaje' => 'Usuario no encontrado.']);
+    }
+}
 
 }

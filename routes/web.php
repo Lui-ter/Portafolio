@@ -29,4 +29,6 @@ Route::post('/recibirTitulo', [usuariosController::class, 'nuevoTitulo']);
 Route::post('/recibirExperiencia', [usuariosController::class, 'nuevoExperiencia']);
 // Ruta para recibir el campo de imagen para el usuario
 Route::post('/recibirImagen', [usuariosController::class, 'nuevaImagen']);
+// Ruta par eliminar los registros
+Route::post('/eliminar',[usuariosController::class,'eliminar']);
 
