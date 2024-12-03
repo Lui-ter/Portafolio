@@ -27,3 +27,6 @@ Route::post('/recibirFecha', [usuariosController::class, 'nuevaFecha']);
 Route::post('/recibirTitulo', [usuariosController::class, 'nuevoTitulo']);
 // Ruta para recibir el campo de experiencia para el usuario
 Route::post('/recibirExperiencia', [usuariosController::class, 'nuevoExperiencia']);
+// Ruta para recibir el campo de imagen para el usuario
+Route::post('/recibirImagen', [usuariosController::class, 'nuevaImagen']);
+

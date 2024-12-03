@@ -266,17 +266,18 @@
                      <!--Model para la ubicacion-->
                     
                 </div>
-                <div class="photo">
+                <div class="photo"><i>{{$datos->imagen}}</i>
                     <a href="#" id="imagen-margen">¿Deseas agregar una imagen?</a>
                     <!--Model con js-->
                     <div id="modal-imagen">
                         <div class="datos-model">
                             <span class="cerrar cerrar-imagen">Atras</span>
                             <h3>Ingresa información</h3>
-                            <form method="post" action="#" id="form-imagen" enctype="multipart/form-data">
+                            <form method="post" action="{{url('recibirImagen')}}" id="form-imagen" enctype="multipart/form-data">
                                 @csrf
                                 <label>Imagen:</label>
                                 <input type="file" id="imagen" name="imagen" accept="image/*" required>
+                                <input type="hidden" name="imagen" value="{{$datos->id}}">
                                 <button type="submit">Guardar cambios</button>
                             </form>
                         </div>
