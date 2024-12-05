@@ -1,1 +1,2 @@
 Este mini proyecto es la realizacion de un generador de un portafolio con los datos ingresados por el usuario. donde se guardar progresivamente en la base datos, hasta definir un perfil profesional con los datos ingresados.
+Se uso el framework Laravel para la organizacion de los archivos, con el modelo MVC para un mejor manejo. Se incluyo ademas javascript para las animaciones de los formularios para actualizar el portafolio.
